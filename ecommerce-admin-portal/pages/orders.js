@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout'
 import React from 'react'
 
 const orders = () => {
   return (
-    <div>orders</div>
+    <div className="flex">
+      <Layout />
+      orders</div>
   )
 }
 

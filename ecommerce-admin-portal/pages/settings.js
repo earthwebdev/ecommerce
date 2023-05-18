@@ -1,8 +1,11 @@
+import Layout from '@/components/Layout'
 import React from 'react'
 
 const settings = () => {
   return (
-    <div>settings</div>
+    <div className="flex">
+      <Layout />
+      settings</div>
   )
 }
 

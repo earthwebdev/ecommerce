@@ -3,8 +3,8 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 export default function Component() {
   const { data: session } = useSession();
-  //console.log(session);
-  if (session) {
+  console.log(session);
+  //if (session) {
     return (
       <Layout>
             <div className="text-blue-900 flex justify-between">
@@ -18,11 +18,11 @@ export default function Component() {
             </div>
       </Layout>        
     )
-  }
-  return (
+  //}
+  /* return (
     <>
       Not signed in <br />
       <button onClick={() => signIn('google')}>Sign in as google</button>
     </>
-  )
+  ) */
 }
