@@ -8,8 +8,8 @@ import { useState, useEffect} from 'react'
 const products = () => {
   const [products, setProucts] = useState([]);
   useEffect(() => {
-    const products =  getProducts();
-    setProucts(products.data);
+    /* const products =  getProducts();
+    setProucts(products.data); */
   }, [])
   return (
     <>

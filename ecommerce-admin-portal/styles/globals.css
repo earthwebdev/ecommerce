@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+input, textarea, select{
+    @apply border border-gray-200 rounded-sm w-full px-3 py-2 mb-2
+}
+input:focus, textarea:focus, select:focus{
+    @apply border border-blue-200
+}
+
+h1{
+    @apply text-purple-500 mb-4 text-xl;
+}
+
+label{
+    @apply text-gray-600 text-sm
+}
+
+table.basic{
+    @apply w-full bg-white rounded-sm shadow-md
+}
