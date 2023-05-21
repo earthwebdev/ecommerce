@@ -2,6 +2,8 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import { signIn, useSession } from 'next-auth/react'
 
+import { ToastContainer } from 'react-toastify';
+
 const Layout = ({children}) => {
   const {data: session} = useSession();
 
@@ -26,7 +28,7 @@ const Layout = ({children}) => {
               { children }
               </div>
           </div>
-          
+          <ToastContainer />
           
       </>
   )

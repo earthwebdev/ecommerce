@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { insertCategoies, getCategories, deleteCategoies, updateCategoies } from '@/services/axios.service';
 import { data } from 'autoprefixer';
+import { toasterError, toasterSuccess } from '@/services/toastify.service';
 
 const Categories = () => {
     const [name, setName] = useState('');
@@ -20,24 +21,30 @@ const Categories = () => {
         }
         //console.log(data);
         let resp;
+        let message;
         if(editedCategory){
           data._id = editedCategory._id;
           resp = await updateCategoies(data);
           setEditedCategory(null);
           setName('');
           setParentCategory('');
+          message = 'Categories updated successfully!';
         }
         else{
           resp = await insertCategoies(data);
-          
+          setName('');
+          setParentCategory('');
+          message = 'Categories added successfully!';
         }
 
         //console.log(resp);
         if(resp){
           //toastify success message implement
+          toasterSuccess(message)
           getCategoriesData();
         }else{
           //toastify error message implement
+          toasterError(resp.error);
         }
         
         
@@ -61,9 +68,11 @@ const Categories = () => {
       //console.log(resp);
        if(resp){
         //toastify success message implement
+        toasterSuccess('Categories deleted successfully!')
         getCategoriesData();
       }else{
         //toastify error message implement
+        toasterError(resp.error);
       } 
 
     }
