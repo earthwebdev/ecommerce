@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { insertCategoies, getCategories, deleteCategoies, updateCategoies } from '@/services/axios.service';
+import { data } from 'autoprefixer';
 
 const Categories = () => {
     const [name, setName] = useState('');
@@ -43,17 +44,27 @@ const Categories = () => {
     }
     const getCategoriesData = async () => {
         const resp = await getCategories();
-        //console.log(resp);
         setCategories( resp);
     }
     useEffect(() => {
       getCategoriesData();
     }, []);
     
-    const deleteCategoriesHandler = async (event, id) => {
+    const deleteCategoriesHandler = async (event, category) => {
       event.preventDefault();
-      console.log(id);
-      const resp = await deleteCategoies(id);
+      const data = {
+        name: category.name,
+      }
+      data._id = category._id;
+      console.log(category._id);
+      const resp = await deleteCategoies(data);
+      //console.log(resp);
+      /* if(resp){
+        //toastify success message implement
+        getCategoriesData();
+      }else{
+        //toastify error message implement
+      } */
 
     }
 
@@ -104,7 +115,7 @@ const Categories = () => {
                           <td>{category?.parent?.name}</td>
                           <td>
                               <button onClick={(e) => editCategory(e, category)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mx-2">Edit</button>
-                              <button onClick={(e) => deleteCategoriesHandler(e, category._id)} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full'>Delete</button>
+                              <button onClick={(e) => deleteCategoriesHandler(e, category)} className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full'>Delete</button>
 
                           </td>
                         </tr>

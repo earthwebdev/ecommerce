@@ -12,7 +12,7 @@ const Sidebar = () => {
   console.log(router.pathname);
   const {pathname} = router;
   return (
-    <aside className='flex flex-col gap-4 bg-purple-500 p-4 h-screen '>
+    <aside className='flex flex-col gap-4 bg-purple-500 p-4'>
         <div className="mb-7 mr-4 text-lg"><Logo /></div>         
         <Link href="/" className={pathname === '/'?activeLink:inActiveLink}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
