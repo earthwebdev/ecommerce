@@ -57,14 +57,14 @@ const Categories = () => {
       }
       data._id = category._id;
       console.log(category._id);
-      const resp = await deleteCategoies(data);
+      const resp = await deleteCategoies(category._id);
       //console.log(resp);
-      /* if(resp){
+       if(resp){
         //toastify success message implement
         getCategoriesData();
       }else{
         //toastify error message implement
-      } */
+      } 
 
     }
 
@@ -110,7 +110,7 @@ const Categories = () => {
                 {                  
                     categories.length > 0 && categories.map((category) => {
                       return (
-                        <tr keys={category._id}>
+                        <tr key={category._id}>
                           <td>{category.name}</td>
                           <td>{category?.parent?.name}</td>
                           <td>
