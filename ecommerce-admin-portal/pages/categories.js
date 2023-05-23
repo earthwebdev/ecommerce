@@ -5,6 +5,7 @@ import axios from 'axios';
 import { insertCategoies, getCategories, deleteCategoies, updateCategoies } from '@/services/axios.service';
 import { data } from 'autoprefixer';
 import { toasterError, toasterSuccess } from '@/services/toastify.service';
+import Loader from '@/components/Loader';
 
 const Categories = () => {
     const [name, setName] = useState('');
@@ -12,6 +13,8 @@ const Categories = () => {
     const [categories, setCategories] = useState([]);
 
     const [editedCategory, setEditedCategory] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const saveCategory =  async(e) => {
         e.preventDefault();        
@@ -58,6 +61,7 @@ const Categories = () => {
     }, []);
     
     const deleteCategoriesHandler = async (event, category) => {
+      setIsLoading(true);
       event.preventDefault();
       const data = {
         name: category.name,
@@ -73,7 +77,8 @@ const Categories = () => {
       }else{
         //toastify error message implement
         toasterError(resp.error);
-      } 
+      }
+      setIsLoading(false);
 
     }
 
@@ -106,7 +111,7 @@ const Categories = () => {
             </div>
         </form>}
                   
-      {!editedCategory &&  
+      {!editedCategory && isLoading ? <Loader />: 
         <table className="basic mt-4 table-auto">
               <thead>
                 <tr>

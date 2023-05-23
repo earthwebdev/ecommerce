@@ -3,14 +3,26 @@ import Layout from "@/components/Layout";
 import Link from 'next/link';
 import { getProducts } from '@/services/axios.service';
 import { useState, useEffect} from 'react'
+import axios from 'axios';
+import { images } from '@/next.config';
   
 
 const products = () => {
   const [products, setProucts] = useState([]);
   useEffect(() => {
-    /* const products =  getProducts();
-    setProucts(products.data); */
-  }, [])
+     getProducts().then((resp) => {
+          setProucts(resp.data);
+     });
+  }, []);
+
+  const deleteProductHandler = async(e, prod) => {
+    e.preventDefault();
+    await axios.delete('/api/products?id='+prod._id);
+    const data = products.filter((product) => {
+      return prod._id !== product._id;
+    });
+    setProucts(data);
+  }
   return (
     <>
         <div className="flex">
@@ -23,15 +35,32 @@ const products = () => {
                     Product Name
                   </td>
                   <td>Product Price</td>
+                  <td>Product Images</td>
+                  <td>Action</td>
                 </tr>
               </thead>
               <tbody>
                 {
                     products && products.map((product) => {
-                      <tr keys={product._id}>
-                        <td>{product.name}</td>
-                        <td>{product.price}</td>
-                      </tr>
+                      return (
+                        
+                            <tr keys={product._id}>
+                              <td>{product.title}</td>
+                              <td>{product.price}</td>
+                              {product.images.length > 0 && product.images.map((image) =>{
+                                    return (
+                                      <td><div className='flex flex-wrap gap-1'>
+                                        <img className='h-20' key={image} src={image} alt={image} />
+                                      </div>
+                                      </td>
+                                    )
+                                 })
+                              }
+                              
+                              <td><button onClick={(e) => deleteProductHandler(e, product)} className='bg-red-500 hover:bg-red-700 text-white font-bold h-10 gap-2 p-2'>Delete</button></td>
+                            </tr>
+                        
+                      )
                     })
                 }
                   
