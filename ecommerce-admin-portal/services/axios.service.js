@@ -1,4 +1,4 @@
-import { data } from 'autoprefixer';
+//import { data } from 'autoprefixer';
 import axios from 'axios';
 
 export const getProducts = async() => {

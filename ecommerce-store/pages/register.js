@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const register = () => {
@@ -45,9 +46,9 @@ const register = () => {
                     Register
                 </button>                
                 Do have a account please  
-                <a className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="/login">
+                <Link className="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="/login">
                 click here
-                </a>
+                </Link>
                 to register
             </div>
         </div>

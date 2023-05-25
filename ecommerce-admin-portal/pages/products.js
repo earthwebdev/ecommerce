@@ -30,12 +30,12 @@ const products = () => {
             <Link className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold h-10 gap-2 p-2"  href="/products/new">Add New Product</Link> 
             <table className="mt-10 table-auto">
               <thead>
-                <tr>
-                  <td>
-                    Product Name
+                <tr key={'product-keys'} className='text-center'>
+                  <td className='mx-2'>
+                    Name
                   </td>
-                  <td>Product Price</td>
-                  <td>Product Images</td>
+                  <td className='mx-2 pl-6'>Price</td>
+                  <td className='mx-2 pl-6'>Images</td>
                   <td>Action</td>
                 </tr>
               </thead>
@@ -45,11 +45,11 @@ const products = () => {
                       return (
                         
                             <tr keys={product._id}>
-                              <td>{product.title}</td>
-                              <td>{product.price}</td>
+                              <td className='mr-4 pl-6'>{product.title}</td>
+                              <td className='mr-4 pl-6'>{product.price}</td>
                               {product.images.length > 0 && product.images.map((image) =>{
                                     return (
-                                      <td><div className='flex flex-wrap gap-1'>
+                                      <td className='mr-4 pl-6'><div className='flex flex-wrap gap-1'>
                                         <img className='h-20' key={image} src={image} alt={image} />
                                       </div>
                                       </td>
